@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html class="light" lang="zh-CN">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>大眼睛快搜内容 - 仪表盘</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-surface": "#2c3437",
+            "on-surface-variant": "#596064",
+            "primary": "#b32c00",
+            "primary-container": "#f35022",
+            "on-primary": "#fff7f6",
+            "on-primary-container": "#000000",
+            "surface": "#f7f9fb",
+            "surface-container": "#eaeff2",
+            "surface-container-low": "#f0f4f7",
+            "surface-container-high": "#e3e9ed",
+            "surface-container-highest": "#dce4e8",
+            "surface-container-lowest": "#ffffff",
+            "surface-bright": "#f7f9fb",
+            "background": "#f7f9fb",
+            "outline-variant": "#acb3b7",
+            "outline": "#747c80",
+            "secondary": "#526074",
+            "secondary-container": "#d5e3fc",
+            "on-secondary-container": "#455367",
+            "error": "#a83836",
+            "error-container": "#fa746f",
+          },
+          borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+          fontFamily: { headline: ["Manrope"], body: ["Inter"], label: ["Inter"] },
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+    body { font-family: 'Inter', sans-serif; min-height: max(884px, 100dvh); }
+    h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-24">
+
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-40 bg-white/80 backdrop-blur-md shadow-sm shadow-slate-200/40 flex items-center justify-between px-6 py-3">
+  <div class="flex items-center gap-3">
+    <span class="material-symbols-outlined text-[#b32c00] text-2xl">auto_awesome</span>
+    <span class="text-xl font-black text-[#b32c00] uppercase tracking-widest">大眼睛快搜内容</span>
+  </div>
+  <button onclick="toggleNotifications()" class="text-[#b32c00] hover:bg-slate-50 transition-colors p-2 rounded-full active:scale-95 duration-200 relative">
+    <span class="material-symbols-outlined">notifications</span>
+    <span id="badge" class="absolute -top-0.5 -right-0.5 bg-error text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">3</span>
+  </button>
+</header>
+
+<main class="pt-20 px-6 max-w-5xl mx-auto space-y-8">
+
+  <!-- Welcome Section & Status Cards -->
+  <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="md:col-span-2 flex flex-col justify-center">
+      <h1 class="text-3xl font-extrabold tracking-tight text-on-surface">情报概览</h1>
+      <p class="text-on-surface-variant mt-2 font-body text-lg">为您监测的微博流中提取的精选洞察。</p>
+    </div>
+    <div class="bg-surface-container-low rounded-xl p-6 space-y-4">
+      <div class="flex items-center justify-between">
+        <span class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">系统状态</span>
+        <div class="h-2 w-2 rounded-full bg-primary animate-pulse"></div>
+      </div>
+      <div class="space-y-2">
+        <div class="flex justify-between items-center">
+          <span class="text-sm font-medium">已追踪 4 位博主</span>
+          <span class="material-symbols-outlined text-sm text-on-surface-variant">group</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-sm font-medium">上次抓取：2小时前</span>
+          <span class="material-symbols-outlined text-sm text-on-surface-variant">update</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scraping Trigger Button -->
+  <section>
+    <button id="scrapeBtn" onclick="triggerScrape()" class="w-full bg-gradient-to-b from-[#b32c00] to-[#f35022] text-on-primary py-5 rounded-xl flex items-center justify-center gap-3 shadow-lg shadow-primary/20 hover:brightness-110 active:scale-[0.98] transition-all group">
+      <span class="material-symbols-outlined text-2xl group-hover:rotate-180 transition-transform duration-500">sync</span>
+      <span class="font-headline font-bold text-lg tracking-wide">立即手动触发抓取</span>
+    </button>
+  </section>
+
+  <!-- Daily Summary Section -->
+  <section class="space-y-4">
+    <h2 class="text-xl font-bold tracking-tight px-1">每日摘要</h2>
+    <a href="digest.html" class="block bg-surface-container-lowest rounded-xl p-8 shadow-sm border border-outline-variant/10 relative overflow-hidden group hover:bg-surface-bright transition-all">
+      <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-700"></div>
+      <div class="relative z-10">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="text-xs font-bold text-primary bg-primary/10 px-3 py-1 rounded-full uppercase tracking-tighter">精选摘要</span>
+          <span class="text-xs text-on-surface-variant font-medium">2023年10月24日</span>
+        </div>
+        <h3 class="text-2xl font-extrabold text-on-surface leading-tight mb-4">技术生态转变：AI 在微型博客中的深度集成</h3>
+        <p class="text-on-surface-variant leading-relaxed text-body-lg mb-6">今日分析显示，顶级技术博主中关于 AI 生成视觉内容的讨论量增加了 40%。关键影响力人物正转向自动化内容生成，标志着微博交互架构的重大转变...</p>
+        <span class="flex items-center gap-2 text-primary font-bold hover:underline transition-all">
+          <span>阅读完整情报报告</span>
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </span>
+      </div>
+    </a>
+  </section>
+
+  <!-- Recent Activity Bento Grid -->
+  <section class="space-y-4 pb-12">
+    <h2 class="text-xl font-bold tracking-tight px-1">近期情报动态</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="bg-surface-container-low p-5 rounded-xl hover:bg-surface-container-high transition-colors cursor-pointer">
+        <div class="flex items-start gap-4">
+          <div class="bg-surface-container-lowest p-2 rounded-lg shadow-sm">
+            <span class="material-symbols-outlined text-primary">description</span>
+          </div>
+          <div class="flex-1">
+            <h4 class="font-bold text-sm">摘要已生成</h4>
+            <p class="text-xs text-on-surface-variant mt-1 line-clamp-1">AI 处理了来自 @TechGuru_Beijing 的 14 条新动态</p>
+            <span class="text-[10px] uppercase font-bold text-on-surface-variant mt-3 block opacity-60">12 分钟前</span>
+          </div>
+        </div>
+      </div>
+      <div class="bg-surface-container-low p-5 rounded-xl hover:bg-surface-container-high transition-colors cursor-pointer">
+        <div class="flex items-start gap-4">
+          <div class="bg-surface-container-lowest p-2 rounded-lg shadow-sm">
+            <span class="material-symbols-outlined text-primary">campaign</span>
+          </div>
+          <div class="flex-1">
+            <h4 class="font-bold text-sm">关键词预警</h4>
+            <p class="text-xs text-on-surface-variant mt-1 line-clamp-1">检测到"大语言模型"提及量激增</p>
+            <span class="text-[10px] uppercase font-bold text-on-surface-variant mt-3 block opacity-60">45 分钟前</span>
+          </div>
+        </div>
+      </div>
+      <div class="bg-surface-container-low p-5 rounded-xl hover:bg-surface-container-high transition-colors cursor-pointer lg:col-span-1 md:col-span-2">
+        <div class="flex items-start gap-4">
+          <div class="bg-surface-container-lowest p-2 rounded-lg shadow-sm">
+            <span class="material-symbols-outlined text-primary">person_add</span>
+          </div>
+          <div class="flex-1">
+            <h4 class="font-bold text-sm">博主同步完成</h4>
+            <p class="text-xs text-on-surface-variant mt-1 line-clamp-1">成功更新 4 个已追踪的个人档案</p>
+            <span class="text-[10px] uppercase font-bold text-on-surface-variant mt-3 block opacity-60">2 小时前</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Notification Drawer -->
+<aside id="notificationDrawer" class="fixed top-0 right-0 h-full w-80 z-50 bg-white/95 backdrop-blur-xl shadow-2xl shadow-slate-900/10 flex flex-col p-6 space-y-4 translate-x-full transition-transform duration-300">
+  <div class="flex items-center justify-between mb-4">
+    <h3 class="font-bold text-[#b32c00] text-lg" style="font-family:'Manrope'">通知</h3>
+    <button onclick="toggleNotifications()" class="p-1 hover:bg-slate-100 rounded-lg">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+  <div class="space-y-2 overflow-y-auto">
+    <div class="p-4 rounded-xl bg-slate-50 text-[#b32c00] font-bold text-sm flex gap-3 items-start cursor-pointer hover:bg-slate-100 transition-colors">
+      <span class="material-symbols-outlined shrink-0">description</span>
+      <div>
+        <p>未读简报</p>
+        <span class="text-xs font-normal text-on-surface-variant">您有3份摘要待查看。</span>
+      </div>
+    </div>
+    <div class="p-4 rounded-xl text-slate-600 hover:bg-slate-100 text-sm flex gap-3 items-start transition-colors cursor-pointer">
+      <span class="material-symbols-outlined shrink-0">campaign</span>
+      <div>
+        <p>博主更新</p>
+        <span class="text-xs font-normal text-on-surface-variant">Tech_Insider_Pro 刚刚发布了新更新。</span>
+      </div>
+    </div>
+    <div class="p-4 rounded-xl text-slate-600 hover:bg-slate-100 text-sm flex gap-3 items-start transition-colors cursor-pointer">
+      <span class="material-symbols-outlined shrink-0">info</span>
+      <div>
+        <p>系统通知</p>
+        <span class="text-xs font-normal text-on-surface-variant">抓取任务已完成，共处理 30 条微博。</span>
+      </div>
+    </div>
+  </div>
+</aside>
+<div id="notificationOverlay" onclick="toggleNotifications()" class="fixed inset-0 bg-black/20 z-40 hidden transition-opacity"></div>
+
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.03)] z-50 border-t border-slate-100">
+  <a class="flex flex-col items-center justify-center text-[#b32c00] bg-slate-50 rounded-xl px-3 py-1 active:scale-90 transition-transform" href="index.html">
+    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+    <span class="text-[11px] font-semibold tracking-wide uppercase mt-1">主页</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 hover:text-[#f35022] transition-all active:scale-90" href="bloggers.html">
+    <span class="material-symbols-outlined">group</span>
+    <span class="text-[11px] font-semibold tracking-wide uppercase mt-1">博主</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 hover:text-[#f35022] transition-all active:scale-90" href="history.html">
+    <span class="material-symbols-outlined">history</span>
+    <span class="text-[11px] font-semibold tracking-wide uppercase mt-1">历史</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 hover:text-[#f35022] transition-all active:scale-90" href="settings.html">
+    <span class="material-symbols-outlined">settings</span>
+    <span class="text-[11px] font-semibold tracking-wide uppercase mt-1">设置</span>
+  </a>
+</nav>
+
+<script>
+function toggleNotifications() {
+  const drawer = document.getElementById('notificationDrawer');
+  const overlay = document.getElementById('notificationOverlay');
+  const isOpen = !drawer.classList.contains('translate-x-full');
+  if (isOpen) {
+    drawer.classList.add('translate-x-full');
+    overlay.classList.add('hidden');
+  } else {
+    drawer.classList.remove('translate-x-full');
+    overlay.classList.remove('hidden');
+  }
+}
+
+function triggerScrape() {
+  const btn = document.getElementById('scrapeBtn');
+  btn.innerHTML = '<span class="material-symbols-outlined text-2xl animate-spin">sync</span><span class="font-headline font-bold text-lg tracking-wide">正在抓取中...</span>';
+  btn.disabled = true;
+  btn.classList.add('opacity-80');
+  setTimeout(() => {
+    btn.innerHTML = '<span class="material-symbols-outlined text-2xl">check_circle</span><span class="font-headline font-bold text-lg tracking-wide">抓取完成！</span>';
+    setTimeout(() => {
+      btn.innerHTML = '<span class="material-symbols-outlined text-2xl group-hover:rotate-180 transition-transform duration-500">sync</span><span class="font-headline font-bold text-lg tracking-wide">立即手动触发抓取</span>';
+      btn.disabled = false;
+      btn.classList.remove('opacity-80');
+    }, 2000);
+  }, 2500);
+}
+</script>
+</body>
+</html>

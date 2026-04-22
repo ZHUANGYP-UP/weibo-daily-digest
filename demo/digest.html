@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="light" lang="zh-CN">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>摘要详情 - 大眼睛快搜内容</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: { extend: {
+        colors: {
+          "on-surface": "#2c3437", "on-surface-variant": "#596064", "primary": "#b32c00",
+          "primary-container": "#f35022", "on-primary": "#fff7f6", "on-primary-container": "#000000",
+          "surface": "#f7f9fb", "surface-container": "#eaeff2", "surface-container-low": "#f0f4f7",
+          "surface-container-high": "#e3e9ed", "surface-container-highest": "#dce4e8",
+          "surface-container-lowest": "#ffffff", "surface-bright": "#f7f9fb", "background": "#f7f9fb",
+          "outline-variant": "#acb3b7", "secondary": "#526074", "secondary-container": "#d5e3fc",
+          "on-secondary-container": "#455367",
+        },
+        fontFamily: { headline: ["Manrope"], body: ["Inter"], label: ["Inter"] },
+      }},
+    }
+  </script>
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    body { font-family: 'Inter', 'Microsoft YaHei', sans-serif; min-height: max(884px, 100dvh); }
+    h1, h2, h3, .brand-font { font-family: 'Manrope', 'Microsoft YaHei', sans-serif; }
+  </style>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary/20 pb-32">
+
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-40 bg-white/80 backdrop-blur-md shadow-sm shadow-slate-200/40">
+  <div class="flex items-center justify-between px-6 py-3 w-full">
+    <div class="flex items-center gap-3">
+      <a href="history.html" class="p-2 rounded-xl text-on-surface-variant hover:bg-slate-50 transition-colors active:scale-95 duration-200 flex items-center gap-2">
+        <span class="material-symbols-outlined" style="font-size: 20px;">arrow_back</span>
+        <span class="text-sm font-medium">返回历史</span>
+      </a>
+    </div>
+    <div class="absolute left-1/2 -translate-x-1/2">
+      <span class="text-xl font-black text-[#b32c00] uppercase tracking-wider" style="font-family:'Manrope'">大眼睛快搜内容</span>
+    </div>
+    <button class="p-2 rounded-full hover:bg-slate-50 transition-colors active:scale-95 duration-200">
+      <span class="material-symbols-outlined text-[#b32c00]">notifications</span>
+    </button>
+  </div>
+</header>
+
+<main class="pt-20 pb-32 max-w-4xl mx-auto px-6">
+  <!-- Digest Header -->
+  <section class="mb-12 text-center">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container-high rounded-full mb-4">
+      <span class="material-symbols-outlined text-xs text-primary" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+      <span class="text-[11px] font-bold tracking-widest uppercase text-on-surface-variant">每日存档</span>
+    </div>
+    <h1 class="text-4xl md:text-5xl font-extrabold text-on-surface tracking-tight leading-tight mb-4">2023年10月24日 星期二</h1>
+    <p class="text-on-surface-variant text-lg max-w-xl mx-auto leading-relaxed">为您精选的智能情报报告，汇总了来自微博头部账号关于技术、市场和生活方式的最新动向。</p>
+  </section>
+
+  <div class="space-y-12">
+    <!-- Blogger Block 1 -->
+    <article class="bg-surface-container-lowest rounded-xl p-8 md:p-12 transition-all hover:bg-surface-bright">
+      <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-high">
+            <img alt="" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5dmUf2Qq4KKviRvRfPtwIdkqJqbDm1Cnq7KTr1q4EY1VmfUTDI_FB0sNDGePwPuoy56pp0SYm9ISCATXzSCjGJFUzbxfNRjXuBv5b4TvQySfOTyznHkSJ81OPc9Leqp5-TObvzxyCcMAPolPG79CFjUX8_kh12oKT_xA5-KNgie3tc5kiLs_AlQfsS3xa3C-GhY2zktzs_R-whca2Cgk2Z_VUvGTeTPzqMqCizQ3F4cBGuk3YAvBX6fyVIjTtdgc98i_TIXR_dxg"/>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold tracking-tight text-on-surface">Tech_Insider_Pro</h2>
+            <p class="text-sm text-on-surface-variant font-medium">首席数字战略师</p>
+          </div>
+        </div>
+        <span class="text-xs font-bold text-primary px-3 py-1 bg-primary/5 rounded-lg uppercase tracking-tighter">今日发布 14 条</span>
+      </div>
+      <div class="prose prose-slate max-w-none">
+        <h3 class="text-xl font-bold text-on-surface mb-4" style="font-family:'Manrope'">半导体供应链大变局</h3>
+        <p class="text-on-surface text-lg leading-relaxed mb-6">今日关注重点集中在高端芯片制造的格局重塑。关键讨论强调了向2纳米工艺的转型以及新出口管制带来的地缘政治影响。</p>
+        <ul class="space-y-4 mb-8 list-none pl-0">
+          <li class="flex gap-4">
+            <span class="material-symbols-outlined text-primary mt-1 shrink-0">check_circle</span>
+            <span class="text-on-surface-variant leading-relaxed">该地区顶级供应商报告了EUV光刻机可靠性的重大突破。</span>
+          </li>
+          <li class="flex gap-4">
+            <span class="material-symbols-outlined text-primary mt-1 shrink-0">check_circle</span>
+            <span class="text-on-surface-variant leading-relaxed">下一代AI加速器的早期测试显示，在训练大语言模型时效率提升了40%。</span>
+          </li>
+          <li class="flex gap-4">
+            <span class="material-symbols-outlined text-primary mt-1 shrink-0">check_circle</span>
+            <span class="text-on-surface-variant leading-relaxed">尽管市场情绪依然谨慎，但对第四季度消费电子市场的复苏持乐观态度。</span>
+          </li>
+        </ul>
+      </div>
+      <div class="mt-8 pt-6 border-t border-slate-50 flex justify-end">
+        <a class="inline-flex items-center gap-2 text-xs font-bold text-primary uppercase tracking-widest hover:underline active:scale-95 transition-transform" href="#">查看微博原文<span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span></a>
+      </div>
+    </article>
+
+    <!-- Blogger Block 2 -->
+    <article class="bg-surface-container-lowest rounded-xl p-8 md:p-12 transition-all hover:bg-surface-bright">
+      <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-high">
+            <img alt="" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxms_py0vQhyK8yxf2DA9hyumqrwRjrGvg_dlNUe3SEIOIjxiocfLrcKDE5UyGTnjhNTRvHuvVPOPA56Ybg9hpvfBy2HhT7XAUvwZ_sgLNMJjXAHxkzmxgeCxaJ55UNXC8cBhvY9cjFLsnmdhK7j_0muyBsWd-2GMD5kdJrhMW85W-hSkJ90LDm3dysVL-ksq3t-TYwzcfQvHfYEVDVR0f1m3TDkIr9pAXRrXQbQn5KOCjhnMjaI5edlnFN_wmnN7E21e7Ngy6LFg"/>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold tracking-tight text-on-surface">Trend_Watcher_Daily</h2>
+            <p class="text-sm text-on-surface-variant font-medium">文化与市场分析师</p>
+          </div>
+        </div>
+        <span class="text-xs font-bold text-primary px-3 py-1 bg-primary/5 rounded-lg uppercase tracking-tighter">今日发布 8 条</span>
+      </div>
+      <div class="prose prose-slate max-w-none">
+        <h3 class="text-xl font-bold text-on-surface mb-4" style="font-family:'Manrope'">城市消费主义与"静奢风"</h3>
+        <p class="text-on-surface text-lg leading-relaxed mb-6">"静奢风"运动正演变为中产阶级消费者更具可持续性的长期投资策略。重点已从品牌可见度转向材质的耐用性。</p>
+        <ul class="space-y-4 mb-8 list-none pl-0">
+          <li class="flex gap-4">
+            <span class="material-symbols-outlined text-primary mt-1 shrink-0">arrow_right_alt</span>
+            <span class="text-on-surface-variant leading-relaxed">本土定制品牌的兴起，正与成熟的欧洲时装屋展开竞争。</span>
+          </li>
+          <li class="flex gap-4">
+            <span class="material-symbols-outlined text-primary mt-1 shrink-0">arrow_right_alt</span>
+            <span class="text-on-surface-variant leading-relaxed">"体验经济"支出显著增长——特别是高端精致露营和疗愈度假。</span>
+          </li>
+        </ul>
+      </div>
+      <div class="mt-8 pt-6 border-t border-slate-50 flex justify-end">
+        <a class="inline-flex items-center gap-2 text-xs font-bold text-primary uppercase tracking-widest hover:underline active:scale-95 transition-transform" href="#">查看微博原文<span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span></a>
+      </div>
+    </article>
+
+    <!-- Metadata Footer -->
+    <section class="py-12 border-t border-slate-200/50 text-center">
+      <p class="text-on-surface-variant text-sm italic mb-2">简报由 NeuralCore Engine V4.2 编译</p>
+      <p class="text-on-surface-variant text-xs opacity-50 uppercase tracking-[0.2em]">智能报告结束</p>
+    </section>
+  </div>
+</main>
+
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white border-t border-slate-100 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.03)]">
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 hover:text-[#f35022] transition-all active:scale-90" href="index.html">
+    <span class="material-symbols-outlined">dashboard</span>
+    <span class="text-[11px] font-semibold tracking-wide uppercase mt-1">首页</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 hover:text-[#f35022] transition-all active:scale-90" href="bloggers.html">
+    <span class="material-symbols-outlined">group</span>
+    <span class="text-[11px] font-semibold tracking-wide uppercase mt-1">博主</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-[#b32c00] bg-slate-50 rounded-xl px-3 py-1 active:scale-90" href="history.html">
+    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
+    <span class="text-[11px] font-semibold tracking-wide uppercase mt-1">历史</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 hover:text-[#f35022] transition-all active:scale-90" href="settings.html">
+    <span class="material-symbols-outlined">settings</span>
+    <span class="text-[11px] font-semibold tracking-wide uppercase mt-1">设置</span>
+  </a>
+</nav>
+</body>
+</html>

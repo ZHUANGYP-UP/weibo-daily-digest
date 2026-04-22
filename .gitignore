@@ -1,0 +1,28 @@
+# IDE 配置（不提交）
+.agents/
+.claude/
+.continue/
+.trae/
+
+# 环境变量
+.env
+.env.local
+
+# 依赖
+node_modules/
+
+# Next.js 构建产物
+.next/
+out/
+
+# 数据库文件
+*.db
+*.sqlite
+prisma/migrations/dev.db
+
+# 系统文件
+Thumbs.db
+.DS_Store
+
+# 测试覆盖率
+coverage/

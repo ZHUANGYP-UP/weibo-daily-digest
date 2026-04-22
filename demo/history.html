@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>历史记录 - 大眼睛快搜内容</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: { extend: {
+        colors: {
+          "on-surface": "#2c3437", "on-surface-variant": "#596064", "primary": "#b32c00",
+          "primary-container": "#f35022", "on-primary": "#fff7f6", "on-primary-container": "#000000",
+          "surface": "#f7f9fb", "surface-container": "#eaeff2", "surface-container-low": "#f0f4f7",
+          "surface-container-high": "#e3e9ed", "surface-container-highest": "#dce4e8",
+          "surface-container-lowest": "#ffffff", "surface-bright": "#f7f9fb", "background": "#f7f9fb",
+          "outline-variant": "#acb3b7",
+        },
+        fontFamily: { headline: ["Manrope"], body: ["Inter"], label: ["Inter"] },
+      }},
+    }
+  </script>
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    body { font-family: 'Inter', sans-serif; min-height: max(884px, 100dvh); }
+    h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-24">
+
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-40 bg-white/80 backdrop-blur-md shadow-sm shadow-slate-200/40">
+  <div class="flex items-center justify-between px-6 py-3 w-full">
+    <div class="flex items-center gap-3">
+      <span class="material-symbols-outlined text-[#b32c00]">auto_awesome</span>
+      <span class="text-xl font-black text-[#b32c00] uppercase tracking-wider">大眼睛快搜内容</span>
+    </div>
+    <button class="material-symbols-outlined text-slate-500 hover:bg-slate-50 p-2 rounded-xl transition-colors active:scale-95 duration-200">notifications</button>
+  </div>
+</header>
+
+<main class="pt-20 px-6 max-w-4xl mx-auto">
+  <!-- Header -->
+  <section class="mb-8">
+    <h1 class="text-3xl font-extrabold tracking-tight text-on-surface mb-2">摘要历史</h1>
+    <p class="text-on-surface-variant font-medium">重温您的情报档案和精选见解。</p>
+  </section>
+
+  <!-- Filters -->
+  <section class="mb-10">
+    <div class="flex flex-col gap-4">
+      <label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">按来源筛选</label>
+      <div id="filterBtns" class="flex flex-wrap gap-2">
+        <button onclick="setFilter('all')" class="filter-btn active px-5 py-2.5 rounded-xl bg-primary-container text-on-primary-container font-bold text-sm transition-all active:scale-95" data-filter="all">全部来源</button>
+        <button onclick="setFilter('tech')" class="filter-btn px-5 py-2.5 rounded-xl bg-surface-container-high text-on-surface font-semibold text-sm hover:bg-surface-container-highest transition-all active:scale-95" data-filter="tech">TechCrunch AI</button>
+        <button onclick="setFilter('lex')" class="filter-btn px-5 py-2.5 rounded-xl bg-surface-container-high text-on-surface font-semibold text-sm hover:bg-surface-container-highest transition-all active:scale-95" data-filter="lex">Lex Fridman</button>
+        <button onclick="setFilter('karpathy')" class="filter-btn px-5 py-2.5 rounded-xl bg-surface-container-high text-on-surface font-semibold text-sm hover:bg-surface-container-highest transition-all active:scale-95" data-filter="karpathy">Andrej Karpathy</button>
+        <button onclick="setFilter('verge')" class="filter-btn px-5 py-2.5 rounded-xl bg-surface-container-high text-on-surface font-semibold text-sm hover:bg-surface-container-highest transition-all active:scale-95" data-filter="verge">The Verge 评论</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- History List -->
+  <section class="space-y-6">
+    <!-- Date Group: 10月24日 -->
+    <div class="space-y-4">
+      <div class="flex items-center gap-4">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-primary">2023年10月24日</h2>
+        <div class="h-px flex-grow bg-surface-container-high"></div>
+      </div>
+
+      <a href="digest.html" class="group cursor-pointer bg-surface-container-lowest p-6 rounded-xl transition-all hover:bg-surface-bright flex flex-col md:flex-row gap-6 border-none block">
+        <div class="w-full md:w-32 h-32 rounded-lg overflow-hidden bg-surface-container">
+          <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNkg6jF8SyAtsrNW62SGWFf6Ro2icUnvp-1HvuzZdB0EykPTlqYwzMalw7Mb99t3Fx59vG8isv1iMtrIkDFrcVgNfwrY5hfz_MMON1LuCzAZUKdHF_cjsT9qUxGnR-RUpnk0IM8RVleSs3aXNlhP_y-55hj8kDUfagCByVu85T-eh9NaePjofKmhqu-7bY5xma9MmWZ6evKwGsEMUk0g_X518HFkSJ76CPQeDJebdzJKmwEhP90s7X_sqV5JN2tXSXMrQCn7mySVQ"/>
+        </div>
+        <div class="flex-grow flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-on-surface-variant flex items-center gap-1">
+                <span class="material-symbols-outlined text-[14px]">description</span>已总结 12 篇文章
+              </span>
+              <span class="text-xs font-semibold text-on-surface-variant bg-surface-container px-2 py-0.5 rounded">上午 09:45</span>
+            </div>
+            <h3 class="text-xl font-bold text-on-surface mb-2 group-hover:text-primary transition-colors">LLM 革命：2024 年的架构演变</h3>
+            <p class="text-on-surface-variant leading-relaxed line-clamp-2">探讨最新的研究论文，分析从标准 Transformer 模块向状态空间模型转型的趋势...</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="digest.html" class="group cursor-pointer bg-surface-container-lowest p-6 rounded-xl transition-all hover:bg-surface-bright flex flex-col md:flex-row gap-6 border-none block">
+        <div class="w-full md:w-32 h-32 rounded-lg overflow-hidden bg-surface-container">
+          <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2VQQ7qeN7xVpq4LmI2b3K9T7Hg4li_07L4d1yigrueOZWZhViSNQiMge9_8StipCOKAL6MdhYE89D7UNzqa5V56zyevhHna74j-VPeFz2yYMEU0fmyXjS6Vhmmatn0LN_JmD6JaBFDl6HhERu2CwZi3Dvv2VghS7c7lZrimZI9Z1I-a4FYWe5QhpXxU2pZcyZWlhVeG00buu3cDGVI0-IE66wfVD0mS7zOYIxmTaLXZhtZAmatIGdzwSjo-XeL0SAKk-TZSxOfOU"/>
+        </div>
+        <div class="flex-grow flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-on-surface-variant flex items-center gap-1">
+                <span class="material-symbols-outlined text-[14px]">description</span>已总结 8 篇文章
+              </span>
+              <span class="text-xs font-semibold text-on-surface-variant bg-surface-container px-2 py-0.5 rounded">下午 02:15</span>
+            </div>
+            <h3 class="text-xl font-bold text-on-surface mb-2 group-hover:text-primary transition-colors">机器人与视觉：弥合现实鸿沟</h3>
+            <p class="text-on-surface-variant leading-relaxed line-clamp-2">零样本机器人操作训练环境的新进展，以及多模态视觉模型的影响。</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Date Group: 10月23日 -->
+    <div class="space-y-4 pt-4">
+      <div class="flex items-center gap-4">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-primary">2023年10月23日</h2>
+        <div class="h-px flex-grow bg-surface-container-high"></div>
+      </div>
+
+      <a href="digest.html" class="group cursor-pointer bg-surface-container-lowest p-6 rounded-xl transition-all hover:bg-surface-bright flex flex-col md:flex-row gap-6 border-none block">
+        <div class="w-full md:w-32 h-32 rounded-lg overflow-hidden bg-surface-container">
+          <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoxxWtqDTZj497oCTxFBDVYbB7tRZ9BALf_XxDEKAgWTBf-rnGMk_dklmVoVEr3WQxRzhRo3rQxszLNM8XbLpyH4CU_OnVQOCfnPAqdpWSeiX94z8jVY5LCfyiXTUYAsEvg9qiN8-xW1RizvKmv2i0ADubETWkADdMnE9RXgSLVyBphQWjy6wN6JKcU7FOWbqJ47EjmuLboHewvu0sD51U-dH7ZJ113aufrynNhFvRaKHc-bSZH3d4NslJjrJI3OCuk49OvhyB0qg"/>
+        </div>
+        <div class="flex-grow flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-on-surface-variant flex items-center gap-1">
+                <span class="material-symbols-outlined text-[14px]">description</span>已总结 24 篇文章
+              </span>
+              <span class="text-xs font-semibold text-on-surface-variant bg-surface-container px-2 py-0.5 rounded">上午 11:00</span>
+            </div>
+            <h3 class="text-xl font-bold text-on-surface mb-2 group-hover:text-primary transition-colors">每日全球 AI 基础设施更新</h3>
+            <p class="text-on-surface-variant leading-relaxed line-clamp-2">涵盖 NVIDIA 供应链更新、微软在泰国的新数据中心以及边缘计算未来的海量摘要。</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Pagination -->
+  <section class="mt-12 mb-12 flex justify-center">
+    <button class="flex items-center gap-2 px-8 py-3 rounded-xl bg-surface-container-high text-on-surface font-bold text-sm hover:bg-surface-container-highest transition-all active:scale-95 group">
+      加载更多
+      <span class="material-symbols-outlined text-sm group-hover:translate-y-1 transition-transform">expand_more</span>
+    </button>
+  </section>
+</main>
+
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.03)] border-t border-slate-100 z-50">
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 hover:text-[#f35022] transition-all active:scale-90" href="index.html">
+    <span class="material-symbols-outlined">dashboard</span>
+    <span class="text-[11px] font-semibold tracking-wide uppercase mt-1">首页</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 hover:text-[#f35022] transition-all active:scale-90" href="bloggers.html">
+    <span class="material-symbols-outlined">group</span>
+    <span class="text-[11px] font-semibold tracking-wide uppercase mt-1">博主</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-[#b32c00] bg-slate-50 rounded-xl px-3 py-1 active:scale-90" href="history.html">
+    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
+    <span class="text-[11px] font-semibold tracking-wide uppercase mt-1">历史</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 hover:text-[#f35022] transition-all active:scale-90" href="settings.html">
+    <span class="material-symbols-outlined">settings</span>
+    <span class="text-[11px] font-semibold tracking-wide uppercase mt-1">设置</span>
+  </a>
+</nav>
+
+<script>
+function setFilter(filter) {
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    if (btn.dataset.filter === filter) {
+      btn.className = 'filter-btn active px-5 py-2.5 rounded-xl bg-primary-container text-on-primary-container font-bold text-sm transition-all active:scale-95';
+    } else {
+      btn.className = 'filter-btn px-5 py-2.5 rounded-xl bg-surface-container-high text-on-surface font-semibold text-sm hover:bg-surface-container-highest transition-all active:scale-95';
+    }
+  });
+}
+</script>
+</body>
+</html>

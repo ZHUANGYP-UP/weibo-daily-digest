@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>博主管理 - 大眼睛快搜内容</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: { extend: {
+        colors: {
+          "on-surface": "#2c3437", "on-surface-variant": "#596064", "primary": "#b32c00",
+          "primary-container": "#f35022", "on-primary": "#fff7f6", "on-primary-container": "#000000",
+          "surface": "#f7f9fb", "surface-container": "#eaeff2", "surface-container-low": "#f0f4f7",
+          "surface-container-high": "#e3e9ed", "surface-container-highest": "#dce4e8",
+          "surface-container-lowest": "#ffffff", "surface-bright": "#f7f9fb", "background": "#f7f9fb",
+          "outline-variant": "#acb3b7", "outline": "#747c80", "error": "#a83836", "error-container": "#fa746f",
+        },
+        fontFamily: { headline: ["Manrope"], body: ["Inter"], label: ["Inter"] },
+      }},
+    }
+  </script>
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    body { font-family: 'Inter', sans-serif; min-height: max(884px, 100dvh); }
+    h1, h2, h3, .font-manrope { font-family: 'Manrope', sans-serif; }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-32">
+
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-40 bg-white/80 backdrop-blur-md shadow-sm shadow-slate-200/40">
+  <div class="flex items-center justify-between px-6 py-3 w-full">
+    <div class="flex items-center gap-2">
+      <span class="material-symbols-outlined text-[#b32c00]">auto_awesome</span>
+      <h1 class="text-xl font-black text-[#b32c00] uppercase tracking-widest">大眼睛快搜内容</h1>
+    </div>
+    <button class="p-2 rounded-full hover:bg-slate-50 transition-colors active:scale-95 duration-200 text-slate-500">
+      <span class="material-symbols-outlined">notifications</span>
+    </button>
+  </div>
+</header>
+
+<main class="pt-20 px-6 max-w-2xl mx-auto space-y-8">
+  <!-- Header -->
+  <section class="flex items-baseline justify-between">
+    <h2 class="font-manrope font-extrabold text-2xl tracking-tight text-on-surface">已关注博主 (<span id="bloggerCount">4</span>)</h2>
+    <span class="text-on-surface-variant text-sm font-medium">管理您的数据源</span>
+  </section>
+
+  <!-- Add Blogger Section -->
+  <section class="bg-surface-container-lowest rounded-xl p-6 shadow-sm border border-outline-variant/10">
+    <div class="mb-4">
+      <h3 class="font-manrope font-bold text-lg text-on-surface">添加新数据源</h3>
+      <p class="text-on-surface-variant text-sm mt-1">输入博主的唯一 UID 以开始追踪其更新。</p>
+    </div>
+    <div class="flex flex-col gap-4">
+      <div class="flex flex-col sm:flex-row gap-3">
+        <div class="relative flex-grow">
+          <input id="uidInput" class="w-full bg-surface-container-high border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/30 focus:bg-surface-container-lowest transition-all text-on-surface placeholder:text-on-surface-variant/50" placeholder="例如：tech_visionary_99" type="text"/>
+        </div>
+        <button onclick="addBlogger()" class="bg-gradient-to-b from-primary to-primary-container text-on-primary font-bold py-3 px-8 rounded-xl uppercase tracking-wider text-sm active:scale-95 transition-transform">添加</button>
+      </div>
+      <div id="validationMsg" class="hidden"></div>
+    </div>
+  </section>
+
+  <!-- Bloggers List -->
+  <section class="space-y-4">
+    <div class="flex items-center justify-between px-2">
+      <span class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">活跃情报源</span>
+      <span class="text-xs text-on-surface-variant">上次同步：刚刚</span>
+    </div>
+    <div id="bloggerList" class="space-y-3"></div>
+  </section>
+
+  <!-- Empty State -->
+  <div class="pt-8 pb-12 border-t border-outline-variant/10">
+    <div class="bg-surface-container-low rounded-2xl p-8 text-center space-y-4">
+      <span class="material-symbols-outlined text-4xl text-outline-variant">hub</span>
+      <h4 class="font-manrope font-bold text-on-surface-variant">扩展您的网络</h4>
+      <p class="text-sm text-on-surface-variant max-w-xs mx-auto">添加更多高质量博主可提升您每日 AI 摘要的精准度。</p>
+    </div>
+  </div>
+</main>
+
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full bg-white z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.03)] flex justify-around items-center px-4 pb-6 pt-3 border-t border-slate-100">
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 hover:text-[#f35022] transition-all active:scale-90" href="index.html">
+    <span class="material-symbols-outlined">dashboard</span>
+    <span class="text-[11px] font-semibold tracking-wide uppercase mt-1">主页</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-[#b32c00] bg-slate-50 rounded-xl px-3 py-1 active:scale-90" href="bloggers.html">
+    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+    <span class="text-[11px] font-semibold tracking-wide uppercase mt-1">博主</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 hover:text-[#f35022] transition-all active:scale-90" href="history.html">
+    <span class="material-symbols-outlined">history</span>
+    <span class="text-[11px] font-semibold tracking-wide uppercase mt-1">历史</span>
+  </a>
+  <a class="flex flex-col items-center justify-center text-slate-400 px-3 py-1 hover:text-[#f35022] transition-all active:scale-90" href="settings.html">
+    <span class="material-symbols-outlined">settings</span>
+    <span class="text-[11px] font-semibold tracking-wide uppercase mt-1">设置</span>
+  </a>
+</nav>
+
+<script>
+const defaultBloggers = [
+  { id: 1, name: "硅谷游民 (Silicon Nomad)", uid: "tech_nomad_88", avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuBXuPFkCijM3dD3PDYDqkECBRfZJ2RiYMv0-mAJJL2YL1OmoKPAKhi1Vk9SZryNH3mffOlpq-3aa9G-DmAi8p1pfemcBj_cBayrFWZ8vnN-Pcf_A_VR83cYou__Mg2nGXZOb3mcRjt0rskAZeacp7huhmdTEPmEG8kjHQnV0molPtz61ODOjQ1a1ZtrxxIywUwlu98u2__2NG8X5l_lkk7hSxxapyajpIiMvn96iZEIRKb_PO6p5sKECdaAUrw8VbLnKlSiIxSFi2g" },
+  { id: 2, name: "AI 编年史 (The AI Chronicler)", uid: "chronicler_ai", avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuDRoVFbYR2iMGQsR4NjiOa3ofJ4ib9Wwcspv8RUPe5m25VHsBZAYEycND6xqygrXCAPBTMSI1V7qF79o8NaNZOUet38nwxP7SQDl8pjda_nfbpF8IXgbds-EZXG8PyXuwX-cy_qEq5IFDdaa2uu7ZyqrLa4hhNjhi7FjUgrYU-EOU_EVBMsab_MOB_pC5p86xBcJdifObTBsvL-elyUa4UEhx5ycQb0ocq59JCM9vBeioG_L2VjtJ4d3P6IkVE5cfOzfyCa5rIA5aE" },
+  { id: 3, name: "数据织网者 (Data Weaver)", uid: "weaver_insights", avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuBPq1L5_zx0BbC0T5rE7h6Nnsleh71bKhJArM0DJN7gbxfuRp3i4So4cluqcB_nQchtLKn41hYdjsC6g7ZmqD6NswwFo60KuJBqNHfudHiT42ysbRA3et67E7jaTOizRxb_aUu69KNezh8c6w8jWhRqOVHDQ3JzOB8VQ9QK6iCF2tuMuWSsY9yEr-joghD5ffI9ADsmuHeleBlKplK2xCA_ebjoi4ksge1hgax1btDxThaEsVOq5U33lAUnhSDWbdjiJEYdTYgwN2E" },
+  { id: 4, name: "创投脉搏 (Venture Pulse)", uid: "vpulse_daily", avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuCir7GzE7Ny-2LumTLH6ooLR2cHOqLNZ9qwaPuv0RNgDY6wDgjrYmSbLt6OMn8MJgj3KqwF-rH41UjeKztW9gfdn8oM9qW5tMG7Hcn6G3Pfk3crLt3JNBLmOp2yU98307votdOm3DII5dTt_aXmSNoQMapbr-kdU3rNX6EkdwSuzf-eNGYacD9ZcxfG2-vEU86IizjzJxtE9Gg0AxR_wT951UAi7u6gbLmAqHcF3XMoUBTwLfBycqZUfWeOf-D6FgRcCB4IuJ3Im7U" },
+];
+
+let bloggers = JSON.parse(localStorage.getItem('bloggers') || 'null') || [...defaultBloggers];
+let nextId = bloggers.length ? Math.max(...bloggers.map(b => b.id)) + 1 : 1;
+
+function saveBloggers() {
+  localStorage.setItem('bloggers', JSON.stringify(bloggers));
+}
+
+function renderBloggers() {
+  const list = document.getElementById('bloggerList');
+  document.getElementById('bloggerCount').textContent = bloggers.length;
+  list.innerHTML = bloggers.map(b => `
+    <div class="group flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl hover:bg-surface-bright transition-all">
+      <div class="flex items-center gap-4">
+        <div class="h-12 w-12 rounded-xl overflow-hidden bg-surface-container">
+          <img alt="头像" class="w-full h-full object-cover" src="${b.avatar}"/>
+        </div>
+        <div>
+          <h4 class="font-manrope font-bold text-on-surface">${b.name}</h4>
+          <p class="text-xs text-on-surface-variant">UID: ${b.uid}</p>
+        </div>
+      </div>
+      <button onclick="removeBlogger(${b.id})" class="p-2 text-on-surface-variant hover:text-error hover:bg-error/5 rounded-lg transition-all active:scale-90">
+        <span class="material-symbols-outlined">delete</span>
+      </button>
+    </div>
+  `).join('');
+}
+
+function addBlogger() {
+  const input = document.getElementById('uidInput');
+  const msg = document.getElementById('validationMsg');
+  const uid = input.value.trim();
+
+  if (!uid) {
+    showMsg('error', 'error', '请输入博主 UID');
+    return;
+  }
+  if (bloggers.some(b => b.uid === uid)) {
+    showMsg('error', 'info', '已在关注列表中');
+    return;
+  }
+
+  bloggers.push({ id: nextId++, name: uid, uid: uid, avatar: `https://ui-avatars.com/api/?name=${uid}&background=e3e9ed&color=596064&bold=true` });
+  saveBloggers();
+  renderBloggers();
+  input.value = '';
+  showMsg('success', 'check_circle', '博主添加成功');
+}
+
+function removeBlogger(id) {
+  bloggers = bloggers.filter(b => b.id !== id);
+  saveBloggers();
+  renderBloggers();
+}
+
+function showMsg(type, icon, text) {
+  const msg = document.getElementById('validationMsg');
+  const colors = type === 'error' ? 'text-error bg-error/5' : 'text-green-600 bg-green-50';
+  msg.className = `flex items-center gap-2 text-xs font-medium ${colors} px-3 py-1.5 rounded-lg`;
+  msg.innerHTML = `<span class="material-symbols-outlined text-[16px]">${icon}</span>${text}`;
+  setTimeout(() => { msg.className = 'hidden'; }, 3000);
+}
+
+renderBloggers();
+</script>
+</body>
+</html>
