@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+/// 博主 - 用户关注的微博博主
+model Blogger {
+  id        String   @id @default(cuid())
+  uid       String   @unique       // 微博 UID，唯一标识
+  name      String                 // 博主昵称
+  avatar    String?                // 头像 URL
+  createdAt DateTime @default(now())
+  posts     Post[]                 // 关联的微博内容
+}
+
+/// 原始微博 - 从微博抓取的单条内容
+model Post {
+  id          String   @id @default(cuid())
+  bloggerId   String
+  blogger     Blogger  @relation(fields: [bloggerId], references: [id], onDelete: Cascade)
+  weiboId     String   @unique     // 微博原始 ID，用于去重
+  content     String               // 正文内容
+  publishedAt DateTime             // 发布时间
+  url         String               // 原始微博链接
+  createdAt   DateTime @default(now())
+
+  @@index([bloggerId])
+  @@index([publishedAt])
+}
+
+/// 摘要 - AI 生成的每日摘要文章
+model Digest {
+  id         String        @id @default(cuid())
+  date       String        @unique  // 日期 YYYY-MM-DD，每天最多一条
+  title      String?                // 摘要标题
+  content    String?                // AI 生成的摘要 Markdown，failed 时为 null
+  rawPostIds String                 // 关联的 Post ID 列表（JSON 数组字符串）
+  status     String        @default("pending") // pending | done | failed
+  createdAt  DateTime      @default(now())
+  notification Notification?
+
+  @@index([date])
+  @@index([status])
+}
+
+/// 站内消息通知
+model Notification {
+  id        String   @id @default(cuid())
+  digestId  String?  @unique       // 关联 Digest，"今日无新动态"时为 null
+  digest    Digest?  @relation(fields: [digestId], references: [id])
+  title     String                 // 通知标题
+  body      String?                // 通知摘要描述
+  type      String   @default("digest") // digest | alert | system
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([isRead])
+  @@index([createdAt])
+}
+
+/// 用户配置 - 单例模式
+model Settings {
+  id       String @id @default("singleton")
+  pushTime String @default("08:00")    // 每日推送时间 HH:mm 格式
+  aiStyle  String @default("concise")  // concise（精简摘要）| detailed（深度分析）
+}
