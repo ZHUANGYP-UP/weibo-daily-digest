@@ -1,6 +1,7 @@
 # IDE 配置（不提交）
 .agents/
-.claude/
+.claude/settings.json
+.claude/projects/
 .continue/
 .trae/
 
@@ -15,10 +16,10 @@ node_modules/
 .next/
 out/
 
-# 数据库文件
+# 数据库文件（运行时生成，不提交）
 *.db
+*.db-journal
 *.sqlite
-prisma/migrations/dev.db
 
 # 系统文件
 Thumbs.db
