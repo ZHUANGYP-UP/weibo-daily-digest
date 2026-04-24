@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+body {
+  font-family: "Inter", "Microsoft YaHei", sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: "Manrope", "Microsoft YaHei", sans-serif;
+}
