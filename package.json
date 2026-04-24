@@ -2,9 +2,14 @@
   "name": "weibo-daily-digest",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio",
+    "db:generate": "prisma generate"
   },
   "repository": {
     "type": "git",
@@ -20,6 +25,23 @@
   "homepage": "https://github.com/ZHUANGYP-UP/weibo-daily-digest#readme",
   "dependencies": {
     "@prisma/client": "^5.22.0",
-    "prisma": "^5.22.0"
+    "@types/node": "^25.6.0",
+    "@types/react": "^19.2.14",
+    "axios": "^1.15.2",
+    "next": "^14.2.35",
+    "node-cron": "^4.2.1",
+    "openai": "^6.34.0",
+    "prisma": "^5.22.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^6.0.3",
+    "zustand": "^5.0.12"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.4",
+    "@types/node-cron": "^3.0.11",
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.10",
+    "tailwindcss": "^4.2.4"
   }
 }
